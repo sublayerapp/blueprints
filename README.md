@@ -4,6 +4,10 @@ This Ruby on Rails app enables you to store chunks of your code we call
 "blueprints" and then use them as a basis for generating new code using those
 previously saved blueprints as a base for GPT4 to generate from.
 
+Blog post sharing some background info: [Is Software Engineering Dead?](https://www.sublayer.com/blog/posts/is-software-engineering-dead)
+
+[Demo video showing Blueprints usage in VSCode](https://www.loom.com/share/727e449a764e4362b28a74460db84655)
+
 ## Installation
 
 * Get an OpenAI API key: https://platform.openai.com/
