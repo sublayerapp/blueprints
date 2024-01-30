@@ -1,0 +1,48 @@
+<p style="color: green"><%= notice %></p>
+<div class="px-4 sm:px-6 lg:px-8">
+  <div class="sm:flex sm:items-center">
+    <div class="sm:flex-auto">
+      <h1 class="text-base font-semibold leading-6 text-gray-900">Blueprints</h1>
+      <p class="mt-2 text-sm text-gray-700">A list of all the blueprints available.</p>
+    </div>
+    <div class="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
+      <%= link_to "New Blueprint", "#", class: "block rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" %>
+    </div>
+  </div>
+  <div class="mt-8 flow-root">
+    <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+      <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
+        <table class="min-w-full divide-y divide-gray-300">
+          <thead>
+            <tr>
+              <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-3">Name</th>
+              <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Description</th>
+              <th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-3">
+                <span class="sr-only">Edit</span>
+              </th>
+            </tr>
+          </thead>
+          <tbody class="bg-white">
+            <% @blueprints.each do |blueprint| %>
+              <tr class="even:bg-gray-50">
+                <td></td>
+                <td class="px-3 py-3.5 whitespace-nowrap text-sm text-gray-500">
+                  <%= blueprint.description %>
+                </td>
+                <td class="pr-3">
+                  <%= link_to edit_blueprint_path(blueprint), class: "text-indigo-600 hover:text-indigo-900" do %>
+                    <span class="sr-only">Edit</span>
+                    <!-- Heroicon name: solid/pencil -->
+                    <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                      <path fill-rule="evenodd" d="M14.293 3.293a1 1 0 00-1.414 0l-10 10a1 1 0 00-.263.465l-1 4a1 1 0 001.213 1.214l4-1a1 1 0 00.465-.263l10-10a1 1 0 000-1.414l-3-3zM5.586 16.414l-.586.146.146-.586L14.5 6.707l.44.44L5.586 16.414zM15.5 6.707l-1.707-1.707 1.293-1.293 1.707 1.707-1.293 1.293z" clip-rule="evenodd" />
+                    </svg>
+                  <% end %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
