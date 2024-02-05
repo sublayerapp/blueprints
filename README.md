@@ -57,3 +57,9 @@ blueprint.
 Once the closest blueprint is found, it sends that blueprint's description,
 associated code, and the new description to gpt4 for generation and replaces the
 highlighted text in your editor with the generated code.
+
+## Community
+
+Like what you see, or looking for more people working on the future of
+programming with LLMs? Come join us in the [Promptable Architecture
+Discord](https://discord.gg/sjTJszPwXt)
