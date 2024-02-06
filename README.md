@@ -24,9 +24,10 @@ Blog post sharing some background info: [Is Software Engineering Dead?](https://
 * Clone the repo: `git clone https://github.com/sublayerapp/blueprints`
 * Change to the blueprints directory: `cd blueprints`
 * Install dependencies: `bundle install`
-* Create your database: `rails db:create`
-* Run migrations: `rails db:migrate`
-* Run the server: `rails s`
+* Create your database: `bin/rails db:create`
+* Run migrations: `bin/rails db:migrate`
+* Generate the tailwind css: `bin/rails tailwindcss:build`
+* Run the server: `bin/rails s`
 
 ## Usage
 
