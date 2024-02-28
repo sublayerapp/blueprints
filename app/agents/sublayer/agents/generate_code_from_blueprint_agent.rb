@@ -28,7 +28,7 @@ module Sublayer
         The code for that blueprint is:
         #{@blueprint_code}
 
-        You need to use the blueprint above and modify it so that it satisfied the following description:
+        You need to use the blueprint above and modify it so that it satisfies the following description:
         #{@description}
 
         Take a deep breath and think step by step before you start coding.

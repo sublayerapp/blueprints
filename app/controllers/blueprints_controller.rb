@@ -10,6 +10,12 @@ class BlueprintsController < ApplicationController
     )
   end
 
+  def destroy
+    @blueprint = Blueprint.find_by(id: params[:id])
+    @blueprint.destroy
+    head :no_content
+  end
+
   # GET blueprints/:id
   def show
     @blueprints = Blueprint.all.order(updated_at: :desc)
