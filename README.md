@@ -20,6 +20,7 @@ Blog post sharing some background info: [Is Software Engineering Dead?](https://
 - Vim: [blueprints.vim](https://github.com/sublayerapp/blueprints.vim)
 - VSCode: [blueprints.code](https://github.com/sublayerapp/blueprints.code)
 - IntelliJ: [blueprints.idea](https://github.com/sublayerapp/blueprints.idea)
+- SublimeText: [blueprints_subl](https://github.com/sublayerapp/blueprints_subl)
 
 * Clone the repo: `git clone https://github.com/sublayerapp/blueprints`
 * Change to the blueprints directory: `cd blueprints`
