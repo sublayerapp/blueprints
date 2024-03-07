@@ -14,8 +14,13 @@ Rails.application.routes.draw do
   end
 
   resources :blueprints, only: [:index, :show, :edit, :update, :destroy]
-  root "blueprints#index"
 
-  # Defines the root path route ("/")
-  # root "posts#index"
+  resources :downloads, only: [:index] do
+    collection do
+      get 'export_all'
+      post 'import'
+    end
+  end
+
+  root "blueprints#index"
 end
