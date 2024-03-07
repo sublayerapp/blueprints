@@ -14,6 +14,9 @@ Rails.application.routes.draw do
   end
 
   resources :blueprints, only: [:index, :show, :edit, :update, :destroy]
+
+  resources :downloads, only: [:index]
+
   root "blueprints#index"
 
   # Defines the root path route ("/")
