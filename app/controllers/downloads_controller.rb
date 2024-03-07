@@ -11,6 +11,13 @@ class DownloadsController < ApplicationController
     send_data generate_csv, filename: "blueprints-all-#{timestamp}.csv", type: 'text/csv; charset=utf-8'
   end
 
+  def import
+    file = params[:file]
+    CSV.foreach(file, headers: true, header_converters: :symbol) do |row|
+      Blueprint.find_or_create_by(row.to_h)
+    end
+  end
+
   private
 
   def generate_csv

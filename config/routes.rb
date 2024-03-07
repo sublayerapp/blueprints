@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   resources :downloads, only: [:index] do
     collection do
       get 'export_all'
+      post 'import'
     end
   end
 
