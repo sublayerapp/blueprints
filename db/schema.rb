@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_03_07_195608) do
+ActiveRecord::Schema[7.1].define(version: 2024_03_07_204431) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "vector"
@@ -23,6 +23,19 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_07_195608) do
     t.vector "embedding", limit: 1536
     t.string "name"
     t.index ["code", "description", "name"], name: "index_blueprints_on_code_and_description_and_name", unique: true
+  end
+
+  create_table "blueprints_categories", id: false, force: :cascade do |t|
+    t.bigint "blueprint_id", null: false
+    t.bigint "category_id", null: false
+    t.index ["blueprint_id", "category_id"], name: "index_blueprints_categories_on_blueprint_id_and_category_id"
+    t.index ["category_id", "blueprint_id"], name: "index_blueprints_categories_on_category_id_and_blueprint_id"
+  end
+
+  create_table "categories", force: :cascade do |t|
+    t.string "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end

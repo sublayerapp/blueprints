@@ -1,5 +1,6 @@
 class Blueprint < ApplicationRecord
   vectorsearch
+  has_and_belongs_to_many :categories
 
   after_save :upsert_to_vectorsearch
 
