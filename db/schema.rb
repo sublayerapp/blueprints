@@ -28,7 +28,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_07_204431) do
   create_table "blueprints_categories", id: false, force: :cascade do |t|
     t.bigint "blueprint_id", null: false
     t.bigint "category_id", null: false
-    t.index ["blueprint_id", "category_id"], name: "index_blueprints_categories_on_blueprint_id_and_category_id"
+    t.index ["blueprint_id", "category_id"], name: "index_blueprints_categories_on_blueprint_id_and_category_id", unique: true
     t.index ["category_id", "blueprint_id"], name: "index_blueprints_categories_on_category_id_and_blueprint_id"
   end
 
