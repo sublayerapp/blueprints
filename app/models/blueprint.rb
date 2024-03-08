@@ -1,10 +1,8 @@
 class Blueprint < ApplicationRecord
   vectorsearch
   has_and_belongs_to_many :categories
-                          # after_add: :touch_updated_at,
-                          # after_remove: :touch_updated_at
 
-  after_save :upsert_to_vectorsearch, if: :saved_changes? # after commit if adding categories
+  after_save :upsert_to_vectorsearch, if: :saved_changes?
 
   def as_vector
     { description: description, name: name }.to_json
@@ -22,10 +20,4 @@ class Blueprint < ApplicationRecord
   def categories_text
     @categories_text ||= categories.pluck(:title).join(", ")
   end
-
-  # private
-
-  # def touch_updated_at(_category)
-  #   touch if persisted?
-  # end
 end
