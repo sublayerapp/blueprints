@@ -29,7 +29,7 @@ class DownloadsController < ApplicationController
     CSV.generate do |csv|
       csv << ["Name", "Description", "Code", "Categories"]
       Blueprint.all.each do |blueprint|
-        csv << [blueprint.name, blueprint.description, blueprint.code, blueprint.categories.pluck(:title).join(", ")]
+        csv << [blueprint.name, blueprint.description, blueprint.code, blueprint.categories_text]
       end
     end
   end
