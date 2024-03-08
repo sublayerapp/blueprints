@@ -8,7 +8,7 @@ module Sublayer
 
       llm_result_format type: :single_string,
         name: "code_categories",
-        description: "comma separated categories that the code belongs to"
+        description: "categories separated by commas"
 
       def initialize(code:)
         @code = code
