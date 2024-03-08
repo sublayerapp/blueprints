@@ -47,7 +47,11 @@ class BlueprintView < Phlex::HTML
         end
 
         div(class: "mt-4 space-y-6 text-sm text-gray-800") do
-          p(class: "whitespace-pre-wrap") { @blueprint.code }
+          pre(class: "whitespace-pre-wrap", data: { controller: 'highlight', "highlight-categories-value": @blueprint.categories.pluck(:title).to_json }) do
+            code do
+              @blueprint.code
+            end
+          end
         end
       end
     end
