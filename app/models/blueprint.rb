@@ -10,9 +10,14 @@ class Blueprint < ApplicationRecord
 
   def build_categories_from_text(text)
     category_texts = text.split(",").map(&:strip).map(&:downcase)
-    categories = category_texts.map do |c|
-      Category.find_or_create_by(title: c)
+    category_texts.each do |c|
+      category = Category.find_or_create_by(title: c)
+
+      self.categories << category unless self.categories.include?(category)
     end
-    self.categories << categories
+  end
+
+  def categories_text
+    @categories_text ||= categories.pluck(:title).join(", ")
   end
 end

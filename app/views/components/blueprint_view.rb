@@ -20,6 +20,17 @@ class BlueprintView < Phlex::HTML
       li(class: "bg-white px-4 py-6 shadow sm:rounded-lg sm:px-6") do
         div(class: "sm:flex sm:items-baseline sm:justify-between") do
           h3(class: "text-base font-medium") do
+            span(class: "text-gray-900") { "Blueprint Categories" }
+          end
+        end
+
+        div(class: "mt-4 space-y-6 text-sm text-gray-800") do
+          p { @blueprint.categories_text }
+        end
+      end
+      li(class: "bg-white px-4 py-6 shadow sm:rounded-lg sm:px-6") do
+        div(class: "sm:flex sm:items-baseline sm:justify-between") do
+          h3(class: "text-base font-medium") do
             span(class: "text-gray-900") { "Blueprint Description" }
           end
         end
