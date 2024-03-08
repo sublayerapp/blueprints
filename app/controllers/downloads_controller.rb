@@ -14,7 +14,12 @@ class DownloadsController < ApplicationController
   def import
     file = params[:file]
     CSV.foreach(file, headers: true, header_converters: :symbol) do |row|
-      Blueprint.find_or_create_by(row.to_h)
+      params = row.to_h.except(:categories)
+
+      blueprint = Blueprint.find_or_initialize_by(params)
+      blueprint.build_categories_from_text(row.to_h[:categories])
+
+      blueprint.save
     end
   end
 
@@ -22,9 +27,9 @@ class DownloadsController < ApplicationController
 
   def generate_csv
     CSV.generate do |csv|
-      csv << ["Name", "Description", "Code"]
+      csv << ["Name", "Description", "Code", "Categories"]
       Blueprint.all.each do |blueprint|
-        csv << [blueprint.name, blueprint.description, blueprint.code]
+        csv << [blueprint.name, blueprint.description, blueprint.code, blueprint.categories.pluck(:title).join(", ")]
       end
     end
   end
