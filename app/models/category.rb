@@ -3,6 +3,7 @@ class Category < ApplicationRecord
 
   validates :title, presence: true, uniqueness: true
 
+  after_initialize :downcase_title
   before_save :downcase_title
 
   private

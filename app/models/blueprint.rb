@@ -11,7 +11,7 @@ class Blueprint < ApplicationRecord
   def build_categories_from_text(text)
     category_texts = text.split(",").map(&:strip)
     category_texts.each do |c|
-      category = Category.find_or_create_by(title: c.downcase)
+      category = Category.find_or_create_by(title: c)
 
       self.categories << category unless self.categories.include?(category)
     end
