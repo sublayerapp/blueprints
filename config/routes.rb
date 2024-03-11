@@ -13,7 +13,9 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :blueprints, only: [:index, :show, :edit, :update, :destroy]
+  resources :blueprints, only: [:index, :show, :edit, :update, :destroy] do
+    resources :categories, only: [:create]
+  end
 
   resources :downloads, only: [:index] do
     collection do
