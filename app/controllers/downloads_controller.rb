@@ -6,7 +6,7 @@ class DownloadsController < ApplicationController
     render Downloads::IndexView.new
   end
 
-  def export_all
+  def export
     timestamp = Time.now.strftime("%Y-%m-%d-%H%M%S")
     send_data generate_csv, filename: "blueprints-all-#{timestamp}.csv", type: 'text/csv; charset=utf-8'
   end
@@ -28,9 +28,15 @@ class DownloadsController < ApplicationController
   def generate_csv
     CSV.generate do |csv|
       csv << ["Name", "Description", "Code", "Categories"]
-      Blueprint.all.each do |blueprint|
+      blueprints_to_export.each do |blueprint|
         csv << [blueprint.name, blueprint.description, blueprint.code, blueprint.categories_text]
       end
     end
+  end
+
+  def blueprints_to_export
+    return Blueprint.all if params[:titles].all?(&:blank?)
+
+    Category.includes(:blueprints).where(title: [params[:titles]]).map(&:blueprints).flatten
   end
 end
