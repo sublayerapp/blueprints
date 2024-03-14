@@ -20,6 +20,7 @@ gem "sublayer", path: "vendor/gems/sublayer"
 group :development, :test do
   gem "pry"
   gem "debug", platforms: %i[ mri windows ]
+  gem "rspec-rails"
 end
 
 group :development do
@@ -29,6 +30,8 @@ end
 group :test do
   gem "capybara"
   gem "selenium-webdriver"
+  gem "shoulda-callback-matchers"
+  gem "shoulda-matchers"
 end
 
 gem "langchainrb_rails", "~> 0.1.5"
