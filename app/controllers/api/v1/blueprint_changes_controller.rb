@@ -12,7 +12,7 @@ module Api
         description: changes
       ).execute
 
-      render json: { result: code, buffer_id: params[:buffer_id], start_line: params[:start_line], end_line: params[:end_line] }
+      render json: { result: new_code, buffer_id: params[:buffer_id], start_line: params[:start_line], end_line: params[:end_line] }
     end
   end
 end
