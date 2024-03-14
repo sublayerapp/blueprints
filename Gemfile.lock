@@ -111,7 +111,6 @@ GEM
     debug (1.9.1)
       irb (~> 1.10)
       reline (>= 0.3.8)
-    diff-lcs (1.5.1)
     drb (2.2.0)
       ruby2_keywords
     erb (4.0.3)
@@ -255,23 +254,6 @@ GEM
     reline (0.4.1)
       io-console (~> 0.5)
     rexml (3.2.6)
-    rspec-core (3.13.0)
-      rspec-support (~> 3.13.0)
-    rspec-expectations (3.13.0)
-      diff-lcs (>= 1.2.0, < 2.0)
-      rspec-support (~> 3.13.0)
-    rspec-mocks (3.13.0)
-      diff-lcs (>= 1.2.0, < 2.0)
-      rspec-support (~> 3.13.0)
-    rspec-rails (6.1.1)
-      actionpack (>= 6.1)
-      activesupport (>= 6.1)
-      railties (>= 6.1)
-      rspec-core (~> 3.12)
-      rspec-expectations (~> 3.12)
-      rspec-mocks (~> 3.12)
-      rspec-support (~> 3.12)
-    rspec-support (3.13.1)
     ruby-openai (6.3.1)
       event_stream_parser (>= 0.3.0, < 2.0.0)
       faraday (>= 1)
@@ -282,10 +264,6 @@ GEM
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 3.0)
       websocket (~> 1.0)
-    shoulda-callback-matchers (1.1.4)
-      activesupport (>= 3)
-    shoulda-matchers (6.1.0)
-      activesupport (>= 5.2.0)
     sprockets (4.2.1)
       concurrent-ruby (~> 1.0)
       rack (>= 2.2.4, < 4)
@@ -349,11 +327,8 @@ DEPENDENCIES
   puma (>= 5.0)
   rails (~> 7.1.2)
   redis (>= 4.0.1)
-  rspec-rails
   ruby-openai
   selenium-webdriver
-  shoulda-callback-matchers
-  shoulda-matchers
   sprockets-rails
   stimulus-rails
   sublayer!
