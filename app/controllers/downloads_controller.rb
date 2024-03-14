@@ -8,7 +8,7 @@ class DownloadsController < ApplicationController
 
   def export
     timestamp = Time.now.strftime("%Y-%m-%d-%H%M%S")
-    send_data generate_csv, filename: "blueprints-all-#{timestamp}.csv", type: 'text/csv; charset=utf-8'
+    send_data generate_csv, filename: "blueprints-#{timestamp}.csv", type: 'text/csv; charset=utf-8'
   end
 
   def import
@@ -35,7 +35,7 @@ class DownloadsController < ApplicationController
   end
 
   def blueprints_to_export
-    return Blueprint.all if params[:titles].all?(&:blank?)
+    return Blueprint.all unless params[:titles]&.all?(&:present?)
 
     Category.includes(:blueprints).where(title: [params[:titles]]).map(&:blueprints).flatten
   end

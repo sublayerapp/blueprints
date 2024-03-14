@@ -37,4 +37,10 @@ class BlueprintsController < ApplicationController
     @blueprint.update(blueprint_params)
     redirect_to blueprint_path(@blueprint)
   end
+
+  private
+
+  def blueprint_params
+    params.require(:blueprint).permit(:name, :description, :code)
+  end
 end

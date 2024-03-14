@@ -13,6 +13,7 @@ class CategoriesController < ApplicationController
   end
 
   def category_params
+    params[:category][:title].downcase!
     params.require(:category).permit(:title)
   end
 end
