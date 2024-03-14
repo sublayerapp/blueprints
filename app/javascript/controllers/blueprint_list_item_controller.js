@@ -7,7 +7,7 @@ export default class extends Controller {
 
   delete(event) {
     event.preventDefault()
-    console.log("In here");
+
     if (confirm("Are you sure you want to delete this blueprint?")) {
       fetch(`/blueprints/${this.idValue}`, {
         method: "DELETE",
