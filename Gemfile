@@ -20,6 +20,7 @@ gem "sublayer", path: "vendor/gems/sublayer"
 group :development, :test do
   gem "pry"
   gem "debug", platforms: %i[ mri windows ]
+  gem 'factory_bot_rails'
   gem "rspec-rails"
 end
 

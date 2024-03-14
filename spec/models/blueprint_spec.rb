@@ -7,20 +7,20 @@ describe Blueprint do
 
   describe "#as_vector" do
     it "returns a JSON representation of the blueprint" do
-      blueprint = Blueprint.new(name: "My Blueprint", description: "A description")
+      blueprint = build(:blueprint, name: "My Blueprint", description: "A description")
       expect(blueprint.as_vector).to eq({ description: "A description", name: "My Blueprint" }.to_json)
     end
   end
 
   describe "#build_categories_from_text" do
     it "creates but does not create duplicate categories" do
-      blueprint = Blueprint.new
+      blueprint = create(:blueprint)
       blueprint.build_categories_from_text("Category 1, Category 1")
       expect(blueprint.categories.count).to eq(1)
     end
 
     it "strips whitespace and downcases category titles" do
-      blueprint = Blueprint.new
+      blueprint = build(:blueprint)
       blueprint.build_categories_from_text(" Category 1 , Category 2 ")
       expect(blueprint.categories.first.title).to eq("category 1")
       expect(blueprint.categories.second.title).to eq("category 2")
@@ -29,7 +29,7 @@ describe Blueprint do
 
   describe "#categories_text" do
     it "returns a comma separated list of categories" do
-      blueprint = Blueprint.new
+      blueprint = create(:blueprint)
       blueprint.categories << Category.new(title: "Category 1")
       blueprint.categories << Category.new(title: "Category 2")
       expect(blueprint.categories_text).to eq("category 1, category 2")
