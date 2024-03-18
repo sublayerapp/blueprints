@@ -1,6 +1,4 @@
 describe BlueprintListItem, type: :phlex do
-  include Phlex::Testing::Rails::ViewHelper
-
   it 'renders the blueprint list item' do
     blueprint = create(:blueprint)
 
