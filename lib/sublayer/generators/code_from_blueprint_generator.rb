@@ -1,12 +1,9 @@
 module Sublayer
-  module Agents
-    class GenerateCodeFromBlueprintAgent
-      include Sublayer::Capabilities::LLMAssistance
-      include Sublayer::Capabilities::HumanAssistance
-
+  module Generators
+    class CodeFromBlueprintGenerator < Base
       attr_reader :description, :results
 
-      llm_result_format type: :single_string,
+      llm_output_adapter type: :single_string,
         name: "generated_code",
         description: "The generated code for the description"
 
@@ -16,8 +13,8 @@ module Sublayer
         @description = description
       end
 
-      def execute
-        @results = llm_generate
+      def generate
+        super
       end
 
       def prompt

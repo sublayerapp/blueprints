@@ -15,7 +15,7 @@ gem "redis", ">= 4.0.1"
 gem "tzinfo-data", platforms: %i[ windows jruby ]
 gem "bootsnap", require: false
 gem "phlex-rails"
-gem "sublayer", path: "vendor/gems/sublayer"
+gem "sublayer"
 
 group :development, :test do
   gem "pry"
