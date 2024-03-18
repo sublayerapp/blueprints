@@ -7,9 +7,8 @@ module Sublayer
         name: "generated_description",
         description: "The generated description of the code's functionality"
 
-      def initialize(code:, technologies:)
+      def initialize(code:)
         @code = code
-        @technologies = technologies
       end
 
       def generate
@@ -18,14 +17,11 @@ module Sublayer
 
       def prompt
         <<-PROMPT
-        You are an expert programmer in #{technologies.join(", ")}.
+        You are an expert software engineer. Below is a chunk of code:
 
-        You are tasked with analyzing and describing the functionality of code in the following technologies: #{technologies.join(", ")}.
+        #{@code}
 
-        Here is the code snippet:
-        #{code}
-
-        After reviewing the code, please provide a complete and accurate description of what the code does functionally.
+        Please read the code carefully and provide a high-level description of what this code does, including its purpose, functionalities, and any noteworthy details.
         PROMPT
       end
     end

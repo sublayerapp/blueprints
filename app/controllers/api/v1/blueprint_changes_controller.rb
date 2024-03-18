@@ -4,9 +4,7 @@ module Api
       changes = params[:description]
       code = params[:code]
 
-      categories_text = Sublayer::Generators::CategoriesFromCodeGenerator.new(code: code).generate
-      technologies = categories_text.split(",").map(&:strip)
-      description = Sublayer::Generators::CodeDescriptionGenerator.new(code: code, technologies: technologies).generate
+      description = Sublayer::Generators::CodeDescriptionGenerator.new(code: code).generate
 
       new_code = Sublayer::Generators::CodeFromBlueprintGenerator.new(
         blueprint_description: description,

@@ -3,8 +3,7 @@ module Api
     def create
       code = params[:code]
       categories_text = Sublayer::Generators::CategoriesFromCodeGenerator.new(code: code).generate
-      technologies = categories_text.split(",").map(&:strip)
-      description = Sublayer::Generators::CodeDescriptionGenerator.new(code: code, technologies: technologies).generate
+      description = Sublayer::Generators::CodeDescriptionGenerator.new(code: code).generate
       name = Sublayer::Generators::NameFromCodeAndDescriptionGenerator.new(code: code, description: description).generate
 
       blueprint = Blueprint.new(code: code, description: description, name: name)
