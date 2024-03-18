@@ -9,11 +9,11 @@ describe Api::V1::BlueprintVariantsController, type: :controller do
 
     before do
       allow(Blueprint).to receive(:similarity_search).with(description).and_return([blueprint])
-      allow(Sublayer::Agents::GenerateCodeFromBlueprintAgent).to receive(:new).with(
+      allow(Sublayer::Generators::CodeFromBlueprintGenerator).to receive(:new).with(
         blueprint_description: blueprint.description,
         blueprint_code: blueprint.code,
         description: description
-      ).and_return(double(execute: code))
+      ).and_return(double(generate: code))
     end
 
     it 'returns code and buffer_id' do

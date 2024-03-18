@@ -1,12 +1,9 @@
 module Sublayer
-  module Agents
-    class GenerateNameFromCodeAndDescriptionAgent
-      include Sublayer::Capabilities::LLMAssistance
-      include Sublayer::Capabilities::HumanAssistance
-
+  module Generators
+    class NameFromCodeAndDescriptionGenerator < Base
       attr_reader :code, :description, :results
 
-      llm_result_format type: :single_string,
+      llm_output_adapter type: :single_string,
         name: "blueprint_name",
         description: "The generated name for the blueprint"
 
@@ -15,19 +12,21 @@ module Sublayer
         @description = description
       end
 
-      def execute
-        @results = llm_generate
+      def generate
+        super
       end
 
       def prompt
         <<-PROMPT
         You have been provided with the following code and description for a blueprint:
 
-        Code:
+        ###Code###
         #{code}
+        ###Code End###
 
-        Description:
+        ###Description###
         #{description}
+        ###Description End###
 
         Your task is to analyze the provided information and generate a suitable name for this blueprint.
 

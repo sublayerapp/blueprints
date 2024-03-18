@@ -1,12 +1,9 @@
 module Sublayer
-  module Agents
-    class CodeDescriptionAgent
-      include Sublayer::Capabilities::LLMAssistance
-      include Sublayer::Capabilities::HumanAssistance
-
+  module Generators
+    class CodeDescriptionGenerator < Base
       attr_reader :code, :technologies, :results
 
-      llm_result_format type: :single_string,
+      llm_output_adapter type: :single_string,
         name: "generated_description",
         description: "The generated description of the code's functionality"
 
@@ -15,8 +12,8 @@ module Sublayer
         @technologies = technologies
       end
 
-      def execute
-        @results = human_assistance_with(llm_generate)
+      def generate
+        super
       end
 
       def prompt

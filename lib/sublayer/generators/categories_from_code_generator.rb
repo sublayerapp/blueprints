@@ -1,12 +1,9 @@
 module Sublayer
-  module Agents
-    class GenerateCategoriesFromCodeAgent
-      include Sublayer::Capabilities::LLMAssistance
-      include Sublayer::Capabilities::HumanAssistance
+  module Generators
+    class CategoriesFromCodeGenerator < Base
+      attr_reader :code, :results
 
-      attr_reader :code, :categories, :results
-
-      llm_result_format type: :single_string,
+      llm_output_adapter type: :single_string,
         name: "code_categories",
         description: "categories separated by commas"
 
@@ -14,8 +11,8 @@ module Sublayer
         @code = code
       end
 
-      def execute
-        @categories = llm_generate
+      def generate
+        super
       end
 
       def prompt
