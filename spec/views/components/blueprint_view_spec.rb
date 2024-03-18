@@ -1,5 +1,4 @@
 describe BlueprintView, type: :phlex do
-  include Phlex::Testing::Rails::ViewHelper
   let (:blueprint) { create(:blueprint) }
 
   it 'renders the blueprint view' do

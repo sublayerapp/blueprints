@@ -1,6 +1,4 @@
 describe NarrowSidebar, type: :phlex do
-  include Phlex::Testing::Rails::ViewHelper
-
   it 'renders a path to root' do
     rendered = render(NarrowSidebar.new)
 
