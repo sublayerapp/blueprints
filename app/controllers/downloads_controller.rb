@@ -35,7 +35,7 @@ class DownloadsController < ApplicationController
   end
 
   def blueprints_to_export
-    return Blueprint.all unless params[:titles]&.all?(&:present?)
+    return Blueprint.all unless params[:titles]&.any?(&:present?)
 
     Category.includes(:blueprints).where(title: [params[:titles]]).map(&:blueprints).flatten
   end
