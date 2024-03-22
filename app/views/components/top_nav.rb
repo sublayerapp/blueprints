@@ -1,12 +1,13 @@
 class TopNav < Phlex::HTML
   include Phlex::Rails::Helpers::LinkTo
   include Phlex::Rails::Helpers::Routes
+  include Phlex::Rails::Helpers::ImageTag
 
   def template(&)
     header(class: "relative flex h-16 flex-shrink-0 items-center bg-white") do
       div(class: "absolute inset-y-0 left-0 lg:static lg:flex-shrink-0") do
         a(href: "#", class: "flex h-16 w-16 items-center justify-center bg-cyan-400 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-600 lg:w-20") do
-          img(class: "h-8 w-auto", src: "https://tailwindui.com/img/logos/mark.svg?color=white", alt: "Workflow")
+          image_tag("icon.png", class: "h-8 w-auto")
         end
       end
 

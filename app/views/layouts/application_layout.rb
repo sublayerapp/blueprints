@@ -10,6 +10,7 @@ class ApplicationLayout < ApplicationView
       head do
         title { "Blueprints" }
         meta name: "viewport", content: "width=device-width,initial-scale=1"
+        favicon_link_tag "favicon.png"
         csp_meta_tag
         csrf_meta_tags
         stylesheet_link_tag "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/styles/default.min.css", media: "all", "data-turbo-track": "reload"
