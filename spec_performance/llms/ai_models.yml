@@ -24,10 +24,12 @@ Groq:
   - mixtral-8x7b-32768
   # - gemma-7b-it
   # - llama2-70b-4096
-Local:
-  Hermes-2-Pro-Mistral-7B.Q5_K_M:
-    location: ~/src/sublayer_apps/llamafiles
-  Hermes-2-Pro-Mistral-7B.Q4_0:
-    location: ~/src/sublayer_apps/llamafiles
-  Nous-Hermes-2-Mixtral-8x7B-DPO.Q3_K_S:
-    location: ~/src/sublayer_apps/llamafiles
+
+# # Specify dir of local model.gguf files on your machine
+# Local:
+#   Hermes-2-Pro-Mistral-7B.Q5_K_M:
+#     location: ~/src/sublayer_apps/llamafiles
+#   Hermes-2-Pro-Mistral-7B.Q4_0:
+#     location: ~/src/sublayer_apps/llamafiles
+#   Nous-Hermes-2-Mixtral-8x7B-DPO.Q3_K_S:
+#     location: ~/src/sublayer_apps/llamafiles
