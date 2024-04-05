@@ -12,21 +12,22 @@ describe Api::V1::BlueprintVariantsController, type: :controller do
 
   it 'attempts to get variant' do
     YAML.load_file('spec_performance/llms/ai_models.yml').each do |provider, models|
+      is_local = provider == 'Local'
       Sublayer.configuration.ai_provider = "Sublayer::Providers::#{provider}".constantize
       models.each do |model,arg|
-        Sublayer.configuration.ai_model = (provider == 'Local') ? 'LLaMA_CPP' : model
-        pid = start_and_wait_for_local_model(arg['location'], model) if provider == 'Local'
+        Sublayer.configuration.ai_model = (is_local) ? 'LLaMA_CPP' : model
+        pid = start_and_wait_for_local_model(arg['location'], model) if is_local
 
         puts "#{provider} - #{model}"
-        results = run_performance_test(attempts)
-        clean_up_local_model(pid) if provider == 'Local'
+        results = run_performance_test(attempts, is_local)
+        clean_up_local_model(pid) if is_local
 
         File.rename('spec_performance/llms/results/results.csv', "spec_performance/llms/results/#{provider}_#{model.delete_suffix('.gguf')}_#{results}.csv")
       end
     end
   end
 
-  def run_performance_test(attempts)
+  def run_performance_test(attempts, is_local)
     times = []
     codes = []
     CSV.open("spec_performance/llms/results/results.csv", 'w') do |csv|
@@ -48,6 +49,8 @@ describe Api::V1::BlueprintVariantsController, type: :controller do
           times << elapsed_time
           codes << '500'
         end
+
+        sleep 2 if is_local
       end
 
       average_time = times.sum / times.size
