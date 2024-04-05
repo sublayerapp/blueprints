@@ -1,9 +1,10 @@
 OpenAI:
-  - gpt-4-turbo-preview
   - gpt-3.5-turbo
+  - gpt-4-turbo-preview
 Gemini:
   - gemini-1.0-pro-latest
   - gemini-1.5-pro-latest
+ #  # Untested
   # - gemini-ultra
   # - chat-bison-001
   # - text-bison-001
@@ -18,18 +19,18 @@ Gemini:
   # - aqa
 Claude:
   - claude-3-haiku-20240307
-  - claude-3-opus-20240229
   - claude-3-sonnet-20240229
+  - claude-3-opus-20240229
 Groq:
   - mixtral-8x7b-32768
   # - gemma-7b-it
   # - llama2-70b-4096
 
 # # Specify dir of local model.gguf files on your machine
-# Local:
-#   Hermes-2-Pro-Mistral-7B.Q5_K_M:
-#     location: ~/src/sublayer_apps/llamafiles
-#   Hermes-2-Pro-Mistral-7B.Q4_0:
-#     location: ~/src/sublayer_apps/llamafiles
-#   Nous-Hermes-2-Mixtral-8x7B-DPO.Q3_K_S:
-#     location: ~/src/sublayer_apps/llamafiles
+Local:
+  Hermes-2-Pro-Mistral-7B.Q3_K_L:
+    location: ~/src/sublayer_apps/llamafiles
+  Hermes-2-Pro-Mistral-7B.Q5_K_M:
+    location: ~/src/sublayer_apps/llamafiles
+  Nous-Hermes-2-Mixtral-8x7B-DPO.Q5_K_M:
+    location: ~/src/sublayer_apps/llamafiles

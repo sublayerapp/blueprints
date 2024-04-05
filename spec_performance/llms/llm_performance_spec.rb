@@ -11,6 +11,8 @@ describe Api::V1::BlueprintVariantsController, type: :controller do
   let(:attempts) { 1 }
 
   it 'attempts to get variant' do
+    folder_name = Time.now.strftime("%Y%m%d%H%M%S")
+    Dir.mkdir("spec_performance/llms/results/#{folder_name}")
     YAML.load_file('spec_performance/llms/ai_models.yml').each do |provider, models|
       is_local = provider == 'Local'
       Sublayer.configuration.ai_provider = "Sublayer::Providers::#{provider}".constantize
@@ -19,18 +21,18 @@ describe Api::V1::BlueprintVariantsController, type: :controller do
         pid = start_and_wait_for_local_model(arg['location'], model) if is_local
 
         puts "#{provider} - #{model}"
-        results = run_performance_test(attempts, is_local)
+        results = run_performance_test(folder_name, attempts, is_local)
         clean_up_local_model(pid) if is_local
 
-        File.rename('spec_performance/llms/results/results.csv', "spec_performance/llms/results/#{provider}_#{model.delete_suffix('.gguf')}_#{results}.csv")
+        File.rename("spec_performance/llms/results/#{folder_name}/results.csv", "spec_performance/llms/results/#{folder_name}/#{provider}_#{model.delete_suffix('.gguf')}_#{results}.csv")
       end
     end
   end
 
-  def run_performance_test(attempts, is_local)
+  def run_performance_test(folder_name, attempts, is_local)
     times = []
     codes = []
-    CSV.open("spec_performance/llms/results/results.csv", 'w') do |csv|
+    CSV.open("spec_performance/llms/results/#{folder_name}/results.csv", 'w') do |csv|
       attempts.times do
         time0 = Time.now.to_i
         begin
@@ -58,7 +60,7 @@ describe Api::V1::BlueprintVariantsController, type: :controller do
       puts "Average time: #{average_time}"
       puts "Success: #{codes.count("200")} / #{codes.size}"
 
-      "#{times.sum}seconds_#{codes.count('200')}successes"
+      "#{average_time}seconds_#{codes.count('200')}successes"
     end
   end
 
