@@ -39,3 +39,6 @@
 
 # Ignore ds_store
 **/.DS_Store
+
+# Ignore spec_performance results
+/spec_performance/llms/results/**/*.csv
