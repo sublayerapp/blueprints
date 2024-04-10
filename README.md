@@ -38,6 +38,12 @@ plugins to start storing blueprints locally and generating new ones.
 Once you have a handful of blueprints you can view them and their associated
 descriptions at `http://localhost:3000`
 
+### LLM Performance specs
+
+1. go to `spec_perforamnce/llms/ai_models.yml` to specify which llms you'd like to test
+2. run `rspec spec_performance`
+
+_You must have the appropriate llm setup. See [sublayer](https://github.com/sublayerapp/sublayer) for setup instructions._
 
 ## How It Works
 
