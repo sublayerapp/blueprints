@@ -298,7 +298,7 @@ GEM
     stimulus-rails (1.3.3)
       railties (>= 6.0.0)
     stringio (3.1.0)
-    sublayer (0.0.3)
+    sublayer (0.0.5)
       activesupport
       colorize
       httparty

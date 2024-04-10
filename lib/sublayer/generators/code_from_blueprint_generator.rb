@@ -19,14 +19,21 @@ module Sublayer
 
       def prompt
         <<-PROMPT
-        You are an expert programmer and are great at looking at and understanding existing patterns and applying them to new situations.
+        You are an expert programmer. You are great at understanding existing patterns and applying them to new situations.
 
-        The blueprint we're working with is: #{@blueprint_description}.
+        The blueprint we're referencing is: "#{@blueprint_description}".
         The code for that blueprint is:
-        #{@blueprint_code}
 
-        You need to use the blueprint above and modify it so that it satisfies the following description:
+        ===CODE START===
+        #{@blueprint_code}
+        ===CODE END===
+
+        Use the blueprint above as a reference,
+        Copy, modify and generate the code to satisfy only the description below:
+
+        ===DESCRIPTION START===
         #{@description}
+        ===DESCRIPTION END===
 
         Take a deep breath and think step by step before you start coding.
         PROMPT
