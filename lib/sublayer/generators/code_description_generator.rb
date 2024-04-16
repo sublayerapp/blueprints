@@ -7,6 +7,8 @@ module Sublayer
         name: "generated_description",
         description: "The generated description of the code's functionality"
 
+      llm_input_adapter type: :image
+
       def initialize(code:)
         @code = code
       end
