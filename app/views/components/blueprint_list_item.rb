@@ -7,7 +7,7 @@ class BlueprintListItem < Phlex::HTML
   end
 
   def template
-    li(class: "group relative bg-white px-6 py-5 focus-within:ring-2 focus-within:ring-inset focus-within:ring-blue-600 hover:bg-gray-50") do
+    li(class: "group relative bg-white px-6 py-5 focus-within:ring-2 focus-within:ring-inset focus-within:ring-blue-600 hover:bg-gray-50", data: { name: @blueprint.name } ) do
       div(class: "flex justify-between space-x-3") do
         div(class: "min-w-0 flex-1") do
           link_to blueprint_path(@blueprint), class: "block focus:outline-none" do
