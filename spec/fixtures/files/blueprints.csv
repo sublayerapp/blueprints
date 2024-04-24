@@ -1,2 +1,4 @@
 Name,Description,Code,Categories
 blueprint_name,blueprint_description,code,"category1,category2"
+blueprint_name_2,blueprint_description_2,code_2,"category1,category3"
+preexisting_blueprint_name,preexisting_blueprint_description,preexisting_blueprint_code,"category1,category2"

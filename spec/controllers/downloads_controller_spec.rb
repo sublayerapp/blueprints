@@ -52,7 +52,21 @@ describe DownloadsController, type: :controller do
       expect(Blueprint.count).to eq(0)
       post :import, params: { file: file }
 
-      expect(Blueprint.count).to eq(1)
+      expect(Blueprint.count).to eq(3)
+    end
+
+    context "when an imported blueprint already exists" do
+      it "only imports new blueprints" do
+        create(:blueprint, name: "preexisting_blueprint_name", description: "preexisting_blueprint_description", code: "preexisting_blueprint_code")
+
+        file = fixture_file_upload('blueprints.csv', 'text/csv')
+
+        expect(Blueprint.count).to eq(1)
+
+        post :import, params: { file: file }
+
+        expect(Blueprint.count).to eq(3)
+      end
     end
   end
 end
