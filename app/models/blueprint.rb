@@ -4,6 +4,8 @@ class Blueprint < ApplicationRecord
 
   after_save :upsert_to_vectorsearch, if: :saved_changes?
 
+  validates :name, uniqueness: { scope: %i[description code] }
+
   def as_vector
     { description: description, name: name }.to_json
   end

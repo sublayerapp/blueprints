@@ -5,6 +5,14 @@ describe Blueprint do
   it { is_expected.to respond_to(:build_categories_from_text) }
   it { is_expected.to respond_to(:categories_text) }
 
+  describe "validations" do
+    it "validates the blueprint is unique by code, description, and name" do
+      create(:blueprint, code: "123", description: "A description", name: "My Blueprint")
+      blueprint = build(:blueprint, code: "123", description: "A description", name: "My Blueprint")
+      expect(blueprint.valid?).to be_falsey
+    end
+  end
+
   describe "#as_vector" do
     it "returns a JSON representation of the blueprint" do
       blueprint = build(:blueprint, name: "My Blueprint", description: "A description")
