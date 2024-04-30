@@ -36,6 +36,6 @@ group :test do
   gem "shoulda-matchers"
 end
 
-gem "langchainrb_rails", "~> 0.1.5"
+gem "langchainrb_rails"
 gem "neighbor"
 gem "ruby-openai"
