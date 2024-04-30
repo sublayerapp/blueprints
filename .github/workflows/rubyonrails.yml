@@ -49,6 +49,8 @@ jobs:
       # Add or replace test runners here
       - name: Run tests
         run: bin/rake
+        env:
+          OPENAI_API_KEY: dummy_openai_api_key
 
   lint:
     runs-on: ubuntu-latest
