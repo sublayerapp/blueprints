@@ -31,6 +31,8 @@ end
 
 group :test do
   gem "capybara"
+  gem "vcr"
+  gem "webmock"
   gem "selenium-webdriver"
   gem "shoulda-callback-matchers"
   gem "shoulda-matchers"

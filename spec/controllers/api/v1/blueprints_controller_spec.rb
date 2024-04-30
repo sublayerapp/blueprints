@@ -6,7 +6,11 @@ describe Api::V1::BlueprintsController, type: :controller do
     let(:cat_2) { "cat_2" }
     let(:categories_text) { "#{cat_1}, #{cat_2}" }
     let(:name) { "name" }
-    let(:blueprint) { create(:blueprint) }
+    let(:blueprint) do
+      VCR.use_cassette("generic_blueprint_embedding") do
+        create(:blueprint)
+      end
+    end
 
     before do
       allow(Sublayer::Generators::CategoriesFromCodeGenerator).to receive(:new).with(code: code).and_return(double(generate: categories_text))

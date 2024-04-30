@@ -1,6 +1,10 @@
 describe Api::V1::BlueprintVariantsController, type: :controller do
   describe 'POST #create' do
-    let(:blueprint) { create(:blueprint) }
+    let(:blueprint) do
+      VCR.use_cassette("generic_blueprint_embedding") do
+        create(:blueprint)
+      end
+    end
     let(:description) { 'some description' }
     let(:code) { 'generated code' }
     let(:buffer_id) { 'buffer_id' }
@@ -17,10 +21,12 @@ describe Api::V1::BlueprintVariantsController, type: :controller do
     end
 
     it 'returns code and buffer_id' do
-      post :create, params: { description: description, buffer_id: buffer_id, start_line: start_line, end_line: end_line }
+      VCR.use_cassette('api_v1_blueprint_variants_controller_create') do
+        post :create, params: { description: description, buffer_id: buffer_id, start_line: start_line, end_line: end_line }
 
-      expect(response).to have_http_status(:ok)
-      expect(response.body).to eq({ result: code, buffer_id: buffer_id, start_line: start_line, end_line: end_line }.to_json)
+        expect(response).to have_http_status(:ok)
+        expect(response.body).to eq({ result: code, buffer_id: buffer_id, start_line: start_line, end_line: end_line }.to_json)
+      end
     end
   end
 end

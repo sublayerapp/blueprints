@@ -29,18 +29,22 @@ describe DownloadsController, type: :controller do
 
     context 'when titles are provided' do
       it 'exports blueprints with the provided titles' do
-        category = create(:category)
-        blueprint = create(:blueprint)
-        blueprint.categories << category
-        blueprint.save
+        VCR.use_cassette("generic_blueprint_embedding") do
+          category = create(:category)
 
-        allow(Time).to receive(:now).and_return(Time.new(2020, 1, 1, 0, 0, 0, "+00:00"))
-        expect(Category).to receive(:includes).and_call_original
+          blueprint = create(:blueprint)
 
-        get :export, params: { titles: [category.title] }
+          blueprint.categories << category
+          blueprint.save
 
-        expect(response.headers['Content-Type']).to eq('text/csv; charset=utf-8')
-        expect(response.headers['Content-Disposition'].split("; ")).to include('filename="blueprints-2020-01-01-000000.csv"')
+          allow(Time).to receive(:now).and_return(Time.new(2020, 1, 1, 0, 0, 0, "+00:00"))
+          expect(Category).to receive(:includes).and_call_original
+
+          get :export, params: { titles: [category.title] }
+
+          expect(response.headers['Content-Type']).to eq('text/csv; charset=utf-8')
+          expect(response.headers['Content-Disposition'].split("; ")).to include('filename="blueprints-2020-01-01-000000.csv"')
+        end
       end
     end
   end
@@ -50,22 +54,27 @@ describe DownloadsController, type: :controller do
       file = fixture_file_upload('blueprints.csv', 'text/csv')
 
       expect(Blueprint.count).to eq(0)
-      post :import, params: { file: file }
+
+      VCR.use_cassette("import_blueprints_csv_embeddings") do
+        post :import, params: { file: file }
+      end
 
       expect(Blueprint.count).to eq(3)
     end
 
     context "when an imported blueprint already exists" do
       it "only imports new blueprints" do
-        create(:blueprint, name: "preexisting_blueprint_name", description: "preexisting_blueprint_description", code: "preexisting_blueprint_code")
+        VCR.use_cassette("only_imports_new_blueprints_csv_embedding") do
+          create(:blueprint, name: "preexisting_blueprint_name", description: "preexisting_blueprint_description", code: "preexisting_blueprint_code")
 
-        file = fixture_file_upload('blueprints.csv', 'text/csv')
+          file = fixture_file_upload('blueprints.csv', 'text/csv')
 
-        expect(Blueprint.count).to eq(1)
+          expect(Blueprint.count).to eq(1)
 
-        post :import, params: { file: file }
+          post :import, params: { file: file }
 
-        expect(Blueprint.count).to eq(3)
+          expect(Blueprint.count).to eq(3)
+        end
       end
     end
   end
