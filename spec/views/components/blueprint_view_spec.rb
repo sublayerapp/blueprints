@@ -1,5 +1,9 @@
 describe BlueprintView, type: :phlex do
-  let (:blueprint) { create(:blueprint) }
+  let (:blueprint) do
+    VCR.use_cassette("generic_blueprint_embedding") do
+      create(:blueprint)
+    end
+  end
 
   it 'renders the blueprint view' do
     rendered = render(BlueprintView.new(blueprint: blueprint))

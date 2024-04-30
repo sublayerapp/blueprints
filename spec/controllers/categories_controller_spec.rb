@@ -1,6 +1,10 @@
 describe CategoriesController, type: :controller do
   describe 'POST #create' do
-    let(:blueprint) { create(:blueprint) }
+    let(:blueprint) do
+      VCR.use_cassette("generic_blueprint_embedding") do
+        create(:blueprint)
+      end
+    end
     let(:title) { 'New Category' }
     let(:category_params) { { category: { title: title } } }
 

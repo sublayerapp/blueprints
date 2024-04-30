@@ -7,7 +7,10 @@ describe Blueprint do
 
   describe "validations" do
     it "validates the blueprint is unique by code, description, and name" do
-      create(:blueprint, code: "123", description: "A description", name: "My Blueprint")
+      VCR.use_cassette("generic_blueprint_embedding") do
+        create(:blueprint, code: "123", description: "A description", name: "My Blueprint")
+      end
+
       blueprint = build(:blueprint, code: "123", description: "A description", name: "My Blueprint")
       expect(blueprint.valid?).to be_falsey
     end
@@ -22,9 +25,11 @@ describe Blueprint do
 
   describe "#build_categories_from_text" do
     it "creates but does not create duplicate categories" do
-      blueprint = create(:blueprint)
-      blueprint.build_categories_from_text("Category 1, Category 1")
-      expect(blueprint.categories.count).to eq(1)
+      VCR.use_cassette("generic_blueprint_embedding") do
+        blueprint = create(:blueprint)
+        blueprint.build_categories_from_text("Category 1, Category 1")
+        expect(blueprint.categories.count).to eq(1)
+      end
     end
 
     it "strips whitespace and downcases category titles" do
@@ -37,10 +42,12 @@ describe Blueprint do
 
   describe "#categories_text" do
     it "returns a comma separated list of categories" do
-      blueprint = create(:blueprint)
-      blueprint.categories << Category.new(title: "Category 1")
-      blueprint.categories << Category.new(title: "Category 2")
-      expect(blueprint.categories_text).to eq("category 1, category 2")
+      VCR.use_cassette("generic_blueprint_embedding") do
+        blueprint = create(:blueprint)
+        blueprint.categories << Category.new(title: "Category 1")
+        blueprint.categories << Category.new(title: "Category 2")
+        expect(blueprint.categories_text).to eq("category 1, category 2")
+      end
     end
   end
 end
