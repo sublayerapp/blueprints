@@ -1,6 +1,6 @@
 describe BlueprintView, type: :phlex do
   let (:blueprint) do
-    VCR.use_cassette("generic_blueprint_embedding") do
+    VCR.use_cassette("#{Rails.configuration.ai_provider}/generic_blueprint_embedding") do
       create(:blueprint)
     end
   end

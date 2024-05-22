@@ -7,7 +7,7 @@ describe Blueprint do
 
   describe "validations" do
     it "validates the blueprint is unique by code, description, and name" do
-      VCR.use_cassette("generic_blueprint_embedding") do
+      VCR.use_cassette("#{Rails.configuration.ai_provider}/generic_blueprint_embedding") do
         create(:blueprint, code: "123", description: "A description", name: "My Blueprint")
       end
 
@@ -25,7 +25,7 @@ describe Blueprint do
 
   describe "#build_categories_from_text" do
     it "creates but does not create duplicate categories" do
-      VCR.use_cassette("generic_blueprint_embedding") do
+      VCR.use_cassette("#{Rails.configuration.ai_provider}/generic_blueprint_embedding") do
         blueprint = create(:blueprint)
         blueprint.build_categories_from_text("Category 1, Category 1")
         expect(blueprint.categories.count).to eq(1)
@@ -42,7 +42,7 @@ describe Blueprint do
 
   describe "#categories_text" do
     it "returns a comma separated list of categories" do
-      VCR.use_cassette("generic_blueprint_embedding") do
+      VCR.use_cassette("#{Rails.configuration.ai_provider}/generic_blueprint_embedding") do
         blueprint = create(:blueprint)
         blueprint.categories << Category.new(title: "Category 1")
         blueprint.categories << Category.new(title: "Category 2")

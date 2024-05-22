@@ -29,7 +29,7 @@ describe DownloadsController, type: :controller do
 
     context 'when titles are provided' do
       it 'exports blueprints with the provided titles' do
-        VCR.use_cassette("generic_blueprint_embedding") do
+        VCR.use_cassette("#{Rails.configuration.ai_provider}/generic_blueprint_embedding") do
           category = create(:category)
 
           blueprint = create(:blueprint)
@@ -55,7 +55,7 @@ describe DownloadsController, type: :controller do
 
       expect(Blueprint.count).to eq(0)
 
-      VCR.use_cassette("import_blueprints_csv_embeddings") do
+      VCR.use_cassette("#{Rails.configuration.ai_provider}/import_blueprints_csv_embeddings") do
         post :import, params: { file: file }
       end
 
@@ -64,7 +64,7 @@ describe DownloadsController, type: :controller do
 
     context "when an imported blueprint already exists" do
       it "only imports new blueprints" do
-        VCR.use_cassette("only_imports_new_blueprints_csv_embedding") do
+        VCR.use_cassette("#{Rails.configuration.ai_provider}/only_imports_new_blueprints_csv_embedding") do
           create(:blueprint, name: "preexisting_blueprint_name", description: "preexisting_blueprint_description", code: "preexisting_blueprint_code")
 
           file = fixture_file_upload('blueprints.csv', 'text/csv')
