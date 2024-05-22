@@ -46,12 +46,15 @@ jobs:
         run: bin/rails db:schema:load
         env:
           OPENAI_API_KEY: dummy_openai_api_key
+          GEMINI_API_KEY: dummy_gemini_api_key
+
 
       # Add or replace test runners here
       - name: Run tests
         run: bin/rake
         env:
           OPENAI_API_KEY: dummy_openai_api_key
+          GEMINI_API_KEY: dummy_gemini_api_key
 
   lint:
     runs-on: ubuntu-latest
