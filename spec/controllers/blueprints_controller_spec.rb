@@ -1,7 +1,7 @@
 describe BlueprintsController, type: :controller do
   describe 'DELETE #destroy' do
     it 'deletes the blueprint' do
-      VCR.use_cassette("generic_blueprint_embedding") do
+      VCR.use_cassette("#{Rails.configuration.ai_provider}/generic_blueprint_embedding") do
         blueprint = create(:blueprint)
 
         expect do
@@ -15,11 +15,11 @@ describe BlueprintsController, type: :controller do
     it 'updates the blueprint' do
       blueprint = nil
 
-      VCR.use_cassette("generic_blueprint_embedding") do
+      VCR.use_cassette("#{Rails.configuration.ai_provider}/generic_blueprint_embedding") do
         blueprint = create(:blueprint)
       end
 
-      VCR.use_cassette("generic_blueprint_embedding") do
+      VCR.use_cassette("#{Rails.configuration.ai_provider}/generic_blueprint_embedding") do
         patch :update, params: { id: blueprint.id, blueprint: { name: 'New name' } }
       end
 

@@ -1,6 +1,6 @@
 describe BlueprintList, type: :phlex do
   it 'renders the blueprint list' do
-    VCR.use_cassette("batch_blueprint_embedding") do
+    VCR.use_cassette("#{Rails.configuration.ai_provider}/batch_blueprint_embedding") do
       blueprints = create_list(:blueprint, 3)
 
       rendered = render(BlueprintList.new(blueprints: blueprints))

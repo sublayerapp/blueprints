@@ -10,8 +10,14 @@ Blog post sharing some background info: [Is Software Engineering Dead?](https://
 
 ## Installation
 
+### OpenAI Configuration
 * Get an OpenAI API key: https://platform.openai.com/
 * Set the API key in your environment as: `OPENAI_API_KEY`
+
+### Google Configuration
+* Get a Gemini API key: https://ai.google.dev/
+* Set the API key in your environment as: `GEMINI_API_KEY`
+* Set config.ai_provider to `google` in `config/application.rb`
 
 * Install Postgres (if not installed): `brew install postgres`
 * Install pgvector (if on postgres14): `brew install pgvector`
@@ -69,5 +75,6 @@ highlighted text in your editor with the generated code.
 ## Community
 
 Like what you see, or looking for more people working on the future of
-programming with LLMs? Come join us in the [Promptable Architecture
-Discord](https://discord.gg/sjTJszPwXt)
+programming with LLMs?
+
+ Come join us in the [Sublayer Discord](https://discord.gg/sjTJszPwXt)

@@ -1,6 +1,6 @@
 describe BlueprintListItem, type: :phlex do
   it 'renders the blueprint list item' do
-    VCR.use_cassette("generic_blueprint_embedding") do
+    VCR.use_cassette("#{Rails.configuration.ai_provider}/generic_blueprint_embedding") do
       blueprint = create(:blueprint)
       rendered = render(BlueprintListItem.new(blueprint: blueprint))
 
@@ -11,7 +11,7 @@ describe BlueprintListItem, type: :phlex do
   end
 
   it 'renders the correct blueprint-list-item controller' do
-    VCR.use_cassette("generic_blueprint_embedding") do
+    VCR.use_cassette("#{Rails.configuration.ai_provider}/generic_blueprint_embedding") do
       blueprint = create(:blueprint)
       rendered = render(BlueprintListItem.new(blueprint: blueprint))
 

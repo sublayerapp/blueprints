@@ -7,7 +7,7 @@ describe Api::V1::BlueprintsController, type: :controller do
     let(:categories_text) { "#{cat_1}, #{cat_2}" }
     let(:name) { "name" }
     let(:blueprint) do
-      VCR.use_cassette("generic_blueprint_embedding") do
+      VCR.use_cassette("#{Rails.configuration.ai_provider}/generic_blueprint_embedding") do
         create(:blueprint)
       end
     end

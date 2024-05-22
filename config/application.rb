@@ -18,7 +18,6 @@ module Blueprints
     # not contain `.rb` files, or that should not be reloaded or eager loaded.
     # Common ones are `templates`, `generators`, or `middleware`, for example.
     config.autoload_lib(ignore: %w(assets tasks))
-
     # Configuration for the application, engines, and railties goes here.
     config.generators { |g| g.test_framework :rspec }
     # These settings can be overridden in specific environments using the files
@@ -26,5 +25,8 @@ module Blueprints
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
+
+    # config.ai_provider supported values: "openai"(default), and "google"
+    config.ai_provider = "openai"
   end
 end

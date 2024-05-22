@@ -1,7 +1,7 @@
 describe Api::V1::BlueprintVariantsController, type: :controller do
   describe 'POST #create' do
     let(:blueprint) do
-      VCR.use_cassette("generic_blueprint_embedding") do
+      VCR.use_cassette("#{Rails.configuration.ai_provider}/generic_blueprint_embedding") do
         create(:blueprint)
       end
     end
@@ -21,7 +21,7 @@ describe Api::V1::BlueprintVariantsController, type: :controller do
     end
 
     it 'returns code and buffer_id' do
-      VCR.use_cassette('api_v1_blueprint_variants_controller_create') do
+      VCR.use_cassette("#{Rails.configuration.ai_provider}/api_v1_blueprint_variants_controller_create") do
         post :create, params: { description: description, buffer_id: buffer_id, start_line: start_line, end_line: end_line }
 
         expect(response).to have_http_status(:ok)
