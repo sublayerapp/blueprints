@@ -41,4 +41,3 @@ end
 gem "langchainrb_rails"
 gem "neighbor"
 gem "ruby-openai"
-gem "unicode"
