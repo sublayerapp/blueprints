@@ -337,7 +337,7 @@ GEM
       railties (>= 6.0.0)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
-    unicode (0.4.4.4)
+    unicode (0.4.4.5)
     uri (0.13.0)
     vcr (6.2.0)
     web-console (4.2.1)
